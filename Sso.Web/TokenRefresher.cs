@@ -11,11 +11,12 @@ using Microsoft.IdentityModel.Tokens;
 namespace Sso.Web;
 
 // https://github.com/dotnet/aspnetcore/issues/8175
-internal sealed class TokenRefresher(IOptionsMonitor<OpenIdConnectOptions> oidcOptionsMonitor, 
+internal sealed class TokenRefresher(
+    IOptionsMonitor<OpenIdConnectOptions> oidcOptionsMonitor,
     IOptions<SsoConfiguration> ssoConfigurationOptions)
 {
     private const double LifetimeTouseBeforeRefreshPercentage = 0.7;
-    
+
     public async Task ValidateOrRefreshCookieAsync(CookieValidatePrincipalContext validateContext, string oidcScheme)
     {
         string? accessTokenExpirationText = validateContext.Properties.GetTokenValue("expires_at");
@@ -24,8 +25,8 @@ internal sealed class TokenRefresher(IOptionsMonitor<OpenIdConnectOptions> oidcO
             return;
         }
 
-        var tokenTotalLifetime = ssoConfigurationOptions.Value.KeycloakAccessTokenLifetimeSeconds;
-        var tokenLifetimeToUseBeforeRefreshInSeconds = tokenTotalLifetime * LifetimeTouseBeforeRefreshPercentage;
+        int tokenTotalLifetime = ssoConfigurationOptions.Value.KeycloakAccessTokenLifetimeSeconds;
+        double tokenLifetimeToUseBeforeRefreshInSeconds = tokenTotalLifetime * LifetimeTouseBeforeRefreshPercentage;
 
         OpenIdConnectOptions oidcOptions = oidcOptionsMonitor.Get(oidcScheme);
         DateTimeOffset now = oidcOptions.TimeProvider!.GetUtcNow();

@@ -44,8 +44,8 @@ public static class AuthenticationExtensions
         services.AddOptions<OpenIdConnectOptions>(OpenIdConnectDefaults.AuthenticationScheme)
             .Configure<IOptions<SsoConfiguration>>((opts, ssoOpts) =>
             {
-                var ssoConfiguration = ssoOpts.Value;
-                
+                SsoConfiguration ssoConfiguration = ssoOpts.Value;
+
                 opts.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 opts.UsePkce = true;
                 opts.Authority = ssoConfiguration.KeycloakAuthority;
@@ -110,8 +110,8 @@ public static class AuthenticationExtensions
         services.AddOptions<CookieAuthenticationOptions>(CookieAuthenticationDefaults.AuthenticationScheme)
             .Configure<TokenRefresher, IOptions<SsoConfiguration>>((opts, refresher, ssoOpts) =>
             {
-                var ssoConfiguration = ssoOpts.Value;
-                
+                SsoConfiguration ssoConfiguration = ssoOpts.Value;
+
                 opts.Cookie.HttpOnly = true;
                 opts.Cookie.Name = ssoConfiguration.CookieName;
                 opts.Cookie.SameSite = SameSiteMode.Lax;
@@ -134,7 +134,7 @@ public static class AuthenticationExtensions
 
                     return Task.CompletedTask;
                 };
-                
+
                 opts.Events.OnValidatePrincipal = ctx =>
                 {
                     return refresher.ValidateOrRefreshCookieAsync(ctx, OpenIdConnectDefaults.AuthenticationScheme);
