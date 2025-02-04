@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Items", "Items", "{7514748A
 		.config\dotnet-tools.json = .config\dotnet-tools.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sso.Web.Upstream", "Sso.Web.Upstream\Sso.Web.Upstream.csproj", "{D0DDA9A4-B07F-4430-860B-C1DAFD7D1EB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,5 +23,9 @@ Global
 		{7ACA4649-A5A3-48ED-BF8F-D9D9207BAAA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ACA4649-A5A3-48ED-BF8F-D9D9207BAAA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ACA4649-A5A3-48ED-BF8F-D9D9207BAAA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0DDA9A4-B07F-4430-860B-C1DAFD7D1EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0DDA9A4-B07F-4430-860B-C1DAFD7D1EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0DDA9A4-B07F-4430-860B-C1DAFD7D1EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0DDA9A4-B07F-4430-860B-C1DAFD7D1EB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
